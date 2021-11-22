@@ -1,0 +1,13 @@
+digraph structs {
+node [style=filled,color="hotpink"];
+COOL -> UTUBE [label=N];
+UTUBE -> NOONE [label=N];
+NOONE;
+UTUBE -> LOL [label=Y];
+LOL -> NIX [label=N];
+NIX;
+LOL -> DAXAK [label=Y];
+DAXAK;
+COOL -> ZXC [label=Y];
+ZXC;
+}
