@@ -1,32 +1,152 @@
 #include "list_func.h"
-                                        //TO DO 22.11
-                                        //1)–¥–æ–¥–µ–ª–∞—Ç—å –ø–æ—Å—Ç—Ä–æ–µ–Ω–∏–µ –¥–µ—Ä–µ–≤–∞ –ø–æ –≤–æ–ø—Ä–æ—Å–∞–º
-                                        //2)—Å—á–∏—Ç—ã–≤–∞–Ω–∏–µ –¥–µ—Ä–µ–≤–∞ –∏ –µ–≥–æ –ø–µ—á–∞—Ç–∞–Ω–∏–µ —Ñ–∞–π–ª
-                                        //3)—Å–¥–µ–ª–∞—Ç—å –¥–æ–ø —Ä–µ–∂–∏–º—ã
+                                        //TO DO 27.11                                                            
+                                                //1)SPEAK
+                                        //2)RUSSIAN (wchar_t)
+                                        //3)obrabotka multiple words (fwrite, fgets)
+size_t EXIT_COND = 0;
+
 int main (void) {
+    
+    setlocale (LC_ALL, "Russian");
 
-    node head = {};
+    FILE *cleaner = fopen ("DUMP", "w");
+    fclose (cleaner);
 
-    ctor (&head);
-
-    //graph (&head);
-
+    node *node = nullptr;
+    
     while (1) {
         
-        add_node (&head); 
-        // node *tmp = &head;
-        // puts (tmp->data);
-
-        graph (&head);
-
-        puts ("CONTINUE? Y/N");
-        char ch = 1;
-        scanf (" %c", &ch);
+        txSpeak ("\v¬€¡Œ– ÃŒƒ¿:\n" 
+        "1)¬¬Œƒ ƒ≈–≈¬¿ »« ‘¿…À¿\n"
+        "2)—Œ«ƒ¿“‹ —¬Œ® ƒ≈–≈¬Œ\n");
+        $
         
-        if (ch == 'N')
-            break;
-    }
+        if (ch == '1') {
+            
+            struct node *head = nullptr;
+            
+            FILE *in = fopen ("tree.txt", "rb");
+            get_tree_from_file (&head, in);
+            fclose (in);
+            graph (head);
 
-    puts ("ALL GOOD PROGRAM END");
+            FILE *out = fopen ("test.txt", "w");
+            print_tree (head, out);
+            fclose (out);
+
+            node = head;
+
+            break;
+        }
+        
+        else if (ch == '2') {
+            struct node head = {};
+
+            ctor (&head);
+
+
+            while (1) {
+                
+                add_node (&head); 
+
+                graph (&head);
+
+                txSpeak ("\vœ–ŒƒŒ∆»Ã?\tY/N");
+                $      
+                if (ch == 'N')
+                    break;
+            }
+
+            FILE *out = fopen ("tree.txt", "w");
+            print_tree (&head, out);
+            fclose (out);
+
+            node = &head;
+
+            break;
+        }
+
+    }
+    
+
+        txSpeak ("\v¬€¡Œ– –≈∆»Ã¿ »√–€\n"
+        "1)¿ »Õ¿“Œ–\n"
+        "2)—–¿¬Õ≈Õ»≈ ƒ¬”’\n"
+        "3)’¿–¿ “≈–»—“» ¿\n");
+
+        $
+        switch (ch) {
+
+            case ('0' + AKINATOR): {
+
+                while (1) {
+                    
+                    add_node (node); 
+
+                    graph (node);
+                    
+                    FILE *out = fopen ("tree.txt", "w");
+                    print_tree (node, out);
+                    fclose (out);
+            
+                    txSpeak ("\vœ–ŒƒŒÀ∆»Ã?\tY/N\n");
+                    $      
+                    if (ch == 'N')
+                        break;
+                }
+            break;
+            }
+            
+            case ('0' + COMPARE): {
+                
+                
+                txSpeak ("\v¬¬≈ƒ»“≈ »Ã≈Õ¿ 2 Œ¡⁄≈ “Œ¬\n");
+
+                char obj1 [20] = {};
+                char obj2 [20] = {};
+                
+                my_stack stk1 = {};  
+                constructor (&stk1, 30);
+              
+                my_stack stk2 = {};                
+                constructor (&stk2, 30);
+   
+                scanf (" %s", obj1);
+                scanf (" %s", obj2);
+                puts ("===============");
+                
+                find_obj_in_tree (node, obj1, &stk1);
+                characteristic_print (node, obj1 ,&stk1);
+
+                find_obj_in_tree (node, obj2, &stk2);
+                characteristic_print (node, obj2, &stk2);
+
+                srav (&stk1, &stk2, obj1, obj2, node);
+                
+            break;
+            }
+            
+            case ('0' + CHARACTERISTIC): {
+
+                txSpeak ("\v¬¬≈ƒ»“≈ »Ãﬂ Œ¡⁄≈ “¿\n");
+
+                char obj [20] = {};
+                scanf (" %s", obj);
+                puts ("===============");
+
+                my_stack stk = {};
+                constructor (&stk, 30);
+
+                find_obj_in_tree     (node, obj, &stk);
+                characteristic_print (node, obj, &stk);
+                
+            break;
+            }
+
+            default: {
+                break;
+            }
+        }
+
     return 0;
 }

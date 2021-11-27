@@ -1,13 +1,28 @@
 digraph structs {
 node [style=filled,color="hotpink"];
-COOL -> UTUBE [label=N];
-UTUBE -> NOONE [label=N];
-NOONE;
-UTUBE -> LOL [label=Y];
-LOL -> NIX [label=N];
-NIX;
-LOL -> DAXAK [label=Y];
-DAXAK;
-COOL -> ZXC [label=Y];
-ZXC;
+"smart" -> "dead" [label=N];
+"dead" -> "SUCK" [label=N];
+"SUCK" -> "NOONE" [label=N];
+"NOONE";
+"SUCK" -> "UR" [label=Y];
+"UR";
+"dead" -> "LOH" [label=Y];
+"LOH" -> "ROMA" [label=N];
+"ROMA";
+"LOH" -> "OLEG" [label=Y];
+"OLEG";
+"smart" -> "cool" [label=Y];
+"cool" -> "zadr" [label=N];
+"zadr" -> "suck" [label=N];
+"suck" -> "DANYA" [label=N];
+"DANYA";
+"suck" -> "ya" [label=Y];
+"ya";
+"zadr" -> "REAL" [label=Y];
+"REAL" -> "LEHA" [label=N];
+"LEHA";
+"REAL" -> "LIFE" [label=Y];
+"LIFE";
+"cool" -> "DIMA" [label=Y];
+"DIMA";
 }
